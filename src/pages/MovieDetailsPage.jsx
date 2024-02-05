@@ -25,7 +25,6 @@ const MovieDetailsPage = () => {
     };
     fetchDataById();
   }, [id]);
-  console.log(dataById);
   return (
     <main>
       {loader && <Loader/>}
