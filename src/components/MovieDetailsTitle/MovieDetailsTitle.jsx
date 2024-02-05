@@ -4,8 +4,6 @@ export const MovieDetailsTitle = ({
 }) => {
   const photoURL = "https://image.tmdb.org/t/p/original/";
   const genresList = genres && genres.map((genre) => genre.name).join(", ");
-  const date = new Date(release_date);
-  console.log(date.getFullYear());
   return (
     <div className={css.details}>
       <img src={`${photoURL}${backdrop_path}`} alt="" className={css.image} />
