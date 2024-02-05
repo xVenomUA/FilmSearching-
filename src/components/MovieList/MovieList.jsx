@@ -4,13 +4,15 @@ import { useEffect } from "react";
 import { MovieItem } from "../MovieItem/Movietem";
 import css from "./MovieList.module.css";
 import { Loader } from "../Loader/Loader";
+import { Link, useLocation } from "react-router-dom";
 export const MovieList = () => {
-  const [movie, setMovies] = useState({});
+  const [movie, setMovies] = useState([]);
   const [loader, setLoader] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     const getTrendDay = async () => {
-      setLoader(true);
       try {
+        setLoader(true);
         const data = await fetchTrendDay();
         setMovies(data.results);
       } catch (error) {
@@ -21,14 +23,21 @@ export const MovieList = () => {
     };
     getTrendDay();
   }, []);
-  console.log(movie);
   return (
     <>
       {loader && <Loader />}
       <ul className={css.list}>
         {movie.length > 0 &&
           movie.map((item) => {
-            return <MovieItem key={item.id} data={item} />;
+            return (
+              <Link
+                to={`/movies/${item.id}`}
+                key={item.id}
+                state={{ from: location }}
+              >
+                <MovieItem data={item} />
+              </Link>
+            );
           })}
       </ul>
     </>

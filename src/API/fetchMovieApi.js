@@ -13,3 +13,14 @@ export const fetchTrendDay = async () => {
     console.error(error);
   }
 };
+
+export const fetchByID = async (id) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=uk-UA`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

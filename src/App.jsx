@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import { Loader } from "./components/Loader/Loader";
 import NotFound from "./pages/NotFound";
+import  MovieDetailsPage  from "./pages/MovieDetailsPage";
 
 export const App = () => {
   return (
@@ -15,7 +16,8 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/movies" element={<Movies />}></Route>
-          <Route path="*" element={<NotFound/>} />
+          <Route path="/movies/:id" element={<MovieDetailsPage />}></Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>
