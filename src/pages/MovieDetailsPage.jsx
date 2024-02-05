@@ -12,6 +12,7 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backInLocation = location.state?.from ?? "/";
   useEffect(() => {
+    if (!id) return;
     const fetchDataById = async () => {
       try {
         setLoader(true);
@@ -27,11 +28,17 @@ const MovieDetailsPage = () => {
   }, [id]);
   return (
     <main>
-      {loader && <Loader/>}
+      {loader && <Loader />}
       <Link to={backInLocation} className={css.link}>
-          <FaArrowLeft className={css.icon} />
+        <FaArrowLeft className={css.icon} />
       </Link>
       {dataById && <MovieDetailsTitle data={dataById} />}
+      <Link to={`/movies/${id}/cast`} className={css.link}>
+        Cast
+      </Link>
+      <Link to={`/movies/${id}/reviews`} className={css.link}>
+        Reviews
+      </Link>
     </main>
   );
 };
