@@ -3,6 +3,7 @@
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  background-color: aliceblue;
 }
 
 h1,
@@ -25,4 +26,8 @@ ol {
 img {
   display: block;
   max-width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
