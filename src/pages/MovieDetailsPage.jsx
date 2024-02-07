@@ -1,16 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { fetchByID } from "../API/fetchMovieApi";
 import { Loader } from "../components/Loader/Loader";
 import { FaArrowLeft } from "react-icons/fa";
 import { MovieDetailsTitle } from "../components/MovieDetailsTitle/MovieDetailsTitle";
 import css from "../pages/MovieDetailsPage.module.css";
+import clsx from "clsx";
 const MovieDetailsPage = () => {
   const { id } = useParams();
   const [dataById, setDataByID] = useState({});
   const [loader, setLoader] = useState(false);
   const location = useLocation();
   const backInLocation = location.state?.from ?? "/";
+  const styleMovieDetails = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
   useEffect(() => {
     if (!id) return;
     const fetchDataById = async () => {
@@ -28,17 +38,20 @@ const MovieDetailsPage = () => {
   }, [id]);
   return (
     <main>
-      {loader && <Loader />}
-      <Link to={backInLocation} className={css.link}>
+      <Link to={backInLocation} className={css.linkArrow}>
         <FaArrowLeft className={css.icon} />
       </Link>
       {dataById && <MovieDetailsTitle data={dataById} />}
-      <Link to={`/movies/${id}/cast`} className={css.link}>
-        Cast
-      </Link>
-      <Link to={`/movies/${id}/reviews`} className={css.link}>
-        Reviews
-      </Link>
+      <div className={css.linkDiv}>
+        <NavLink to={"cast"} className={styleMovieDetails}>
+          Cast
+        </NavLink>
+        <NavLink to={"reviews"} className={styleMovieDetails}>
+          Reviews
+        </NavLink>
+      </div>
+      <Outlet />
+      {loader && <Loader />}
     </main>
   );
 };

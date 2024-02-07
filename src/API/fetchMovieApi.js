@@ -24,3 +24,14 @@ export const fetchByID = async (id) => {
     console.error(error);
   }
 };
+
+export const fetchInfo = async (id, select) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}/${select}?api_key=${API_KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
