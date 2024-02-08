@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Loader } from "./components/Loader/Loader";
+const ReactAlarm = lazy(() => import("./components/ReactAlarm/ReactAlarm"));
 const MovieReviews = lazy(() =>
   import("./components/MovieReviews/MovieReviews")
 );
@@ -26,6 +27,7 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <ReactAlarm />
     </>
   );
 };

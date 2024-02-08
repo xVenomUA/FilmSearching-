@@ -41,7 +41,7 @@ export const fetchByQuery = async (query) => {
     const response = await axios.get(
       `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&language=uk-UA&include_adult=false&page=1`
     );
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }

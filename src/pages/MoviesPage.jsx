@@ -5,6 +5,7 @@ import { MovieList } from "../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 import { Loader } from "../components/Loader/Loader";
 import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
+import toast from "react-hot-toast";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -24,11 +25,13 @@ const MoviesPage = () => {
     const fetchData = async () => {
       try {
         const response = await fetchByQuery(setQueryFromParams);
-        setMovies(response.data.results);
+        const { results } = response;
+        toast.success(`We found ${response.total_results} movies for you!`);
+        setMovies(results);
       } catch (error) {
         console.log(error);
         setError(true);
-      } finally { 
+      } finally {
         setLoader(false);
       }
     };
