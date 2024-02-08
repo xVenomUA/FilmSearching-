@@ -1,21 +1,26 @@
 import { useParams } from "react-router-dom";
-import css from "../pages/Reviews.module.css";
+import css from "./MovieReviews.module.css";
 import { useEffect, useState } from "react";
-import { Loader } from "../components/Loader/Loader";
-import { fetchInfo } from "../API/fetchMovieApi";
-import { ReviewItem } from "../components/ReviewItem/ReviewItem";
-export const Reviews = () => {
+import { Loader } from "../Loader/Loader";
+import { fetchInfo } from "../../API/fetchMovieApi";
+import { ReviewItem } from "../ReviewItem/ReviewItem";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+const MovieReviews = () => {
   const { id } = useParams();
   const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     setLoader(true);
+    setError(false);
+    setReviews([]);
     const getReviews = async () => {
       try {
         const response = await fetchInfo(id, "reviews");
         setReviews(response.results);
       } catch (error) {
         console.log(error);
+        setError(true);
       } finally {
         setLoader(false);
       }
@@ -34,7 +39,10 @@ export const Reviews = () => {
             );
           })}
       </ul>
+      {reviews.length === 0 && !error && <p>No reviews</p>}
       {loader && <Loader />}
+      {error && <ErrorMessage />}
     </>
   );
 };
+export default MovieReviews;

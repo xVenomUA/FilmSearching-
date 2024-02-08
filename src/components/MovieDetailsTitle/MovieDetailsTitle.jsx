@@ -13,7 +13,7 @@ export const MovieDetailsTitle = ({
         </h2>
         <ul className={css.list}>
           <li>
-            <h3>Overview</h3> <p>{overview}</p>
+            <h3>Overview</h3> <p>{overview || "Ще немає опису"}</p>
           </li>
           <li>
             <h3>Genres: </h3> <p>{genresList}</p>

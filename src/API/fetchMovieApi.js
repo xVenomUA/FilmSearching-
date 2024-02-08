@@ -35,3 +35,14 @@ export const fetchInfo = async (id, select) => {
     console.error(error);
   }
 };
+
+export const fetchByQuery = async (query) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&language=uk-UA&include_adult=false&page=1`
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

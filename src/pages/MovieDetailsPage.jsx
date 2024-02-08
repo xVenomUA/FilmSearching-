@@ -43,10 +43,18 @@ const MovieDetailsPage = () => {
       </Link>
       {dataById && <MovieDetailsTitle data={dataById} />}
       <div className={css.linkDiv}>
-        <NavLink to={"cast"} className={styleMovieDetails}>
+        <NavLink
+          to={"cast"}
+          className={styleMovieDetails}
+          state={{ from: location.state?.from }}
+        >
           Cast
         </NavLink>
-        <NavLink to={"reviews"} className={styleMovieDetails}>
+        <NavLink
+          to={"reviews"}
+          className={styleMovieDetails}
+          state={{ from: location.state?.from }}
+        >
           Reviews
         </NavLink>
       </div>
