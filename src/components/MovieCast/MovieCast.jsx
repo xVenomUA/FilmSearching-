@@ -39,6 +39,7 @@ const MovieCast = () => {
             );
           })}
       </ul>
+      {cast.length === 0 && !error && <p>No information</p>}
       {loader && <Loader />}
       {error && <ErrorMessage />}
     </>
