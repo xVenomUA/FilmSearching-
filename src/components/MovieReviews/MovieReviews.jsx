@@ -3,7 +3,7 @@ import css from "./MovieReviews.module.css";
 import { useEffect, useState } from "react";
 import { Loader } from "../Loader/Loader";
 import { fetchInfo } from "../../API/fetchMovieApi";
-import { ReviewItem } from "../ReviewItem/ReviewItem";
+import { ReviewItem } from "../MovieReviewsItem/MovieReviewsItem";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 const MovieReviews = () => {
   const { id } = useParams();

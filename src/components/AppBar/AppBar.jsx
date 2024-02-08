@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 const styleBar = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
-export const AppBar = () => {
+const AppBar = () => {
   return (
     <header className={css.header}>
       <nav className={css.nav}>
@@ -18,3 +18,4 @@ export const AppBar = () => {
     </header>
   );
 };
+export default AppBar;

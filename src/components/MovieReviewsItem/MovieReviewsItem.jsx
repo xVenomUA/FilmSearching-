@@ -1,4 +1,4 @@
-import css from "./ReviewItem.module.css";
+import css from "./MovieReviewsItem.module.css"
 export const ReviewItem = ({ data: { content, author } }) => {
   return (
     <>

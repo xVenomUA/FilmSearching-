@@ -12,10 +12,12 @@ import { FaArrowLeft } from "react-icons/fa";
 import { MovieDetailsTitle } from "../components/MovieDetailsTitle/MovieDetailsTitle";
 import css from "../pages/MovieDetailsPage.module.css";
 import clsx from "clsx";
+import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
 const MovieDetailsPage = () => {
   const { id } = useParams();
   const [dataById, setDataByID] = useState({});
   const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const location = useLocation();
   const backInLocation = location.state?.from ?? "/";
   const styleMovieDetails = ({ isActive }) => {
@@ -23,6 +25,7 @@ const MovieDetailsPage = () => {
   };
   useEffect(() => {
     if (!id) return;
+    setError(false);
     const fetchDataById = async () => {
       try {
         setLoader(true);
@@ -30,6 +33,7 @@ const MovieDetailsPage = () => {
         setDataByID(data);
       } catch (error) {
         console.log(error);
+        setError(true);
       } finally {
         setLoader(false);
       }
@@ -60,6 +64,7 @@ const MovieDetailsPage = () => {
       </div>
       <Outlet />
       {loader && <Loader />}
+      {error && <ErrorMessage />}
     </main>
   );
 };

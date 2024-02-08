@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchInfo } from "../../API/fetchMovieApi";
 import { Loader } from "../Loader/Loader";
-import { CastItem } from "../CastItem/CastItem";
 import css from "./MovieCast.module.css";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { MovieCastItem } from "../MovieCastItem/MovieCastItem";
 const MovieCast = () => {
   const { id } = useParams();
   const [loader, setLoader] = useState(false);
@@ -34,7 +34,7 @@ const MovieCast = () => {
           cast.map((item) => {
             return (
               <li key={item.id}>
-                <CastItem data={item} />
+                <MovieCastItem data={item} />
               </li>
             );
           })}
